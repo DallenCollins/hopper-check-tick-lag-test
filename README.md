@@ -1,5 +1,31 @@
 # Hopper Check Tick Lag Test
 
+## Why I Tested This
+
+The server I normally play on has `hopper-check` set to 8 to reduce lag.
+
+The downside is that this can interfere with multi-item sorters and other more complicated redstone machines that rely on hoppers checking for items more often.
+
+So I wanted to find out whether we could lower `hopper-check` without bringing back most of the hopper lag.
+
+Basically, I hosted a creative Minecraft server, measured its normal performance, then loaded 10,000 unlocked hoppers and tested `hopper-check` at 1, 2, 4, 8, and 16.
+
+A tick is basically one update of the Minecraft server. Minecraft normally runs at 20 ticks per second, so `hopper-check = 1` means a hopper checks every tick, while `hopper-check = 8` means it checks once every 8 ticks.
+
+## What I Found
+
+The biggest improvement happened when changing `hopper-check` from 1 to 2.
+
+Going from 1 to 2 reduced average median MSPT by about 55%.
+
+After that, the performance improvements became much smaller. HC4, HC8, and HC16 all ended up in roughly the same range.
+
+My takeaway is that `hopper-check = 2` looks like a good compromise for this kind of setup. It keeps hopper behavior much closer to vanilla while still getting most of the performance improvement.
+
+Basically: setting it to 8 does reduce lag, but these tests suggest you may not need to go that high.
+
+![Hopper Check vs MSPT](HopperLagGraph.png)
+
 Testing how Paper's `hopper-check` setting affects server MSPT and hopper-related tick lag using 10,000 loaded hoppers.
 
 ## Test Setup
