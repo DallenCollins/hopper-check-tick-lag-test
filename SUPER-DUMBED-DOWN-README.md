@@ -16,9 +16,12 @@ So the whole point of this test was to see if we could lower the setting and get
 
 The biggest performance improvement happened between `hopper-check = 1` and `hopper-check = 2`. After that, the improvements got much smaller.
 
+
 ## The Graph
 
 ![Hopper Check vs MSPT](HopperLagGraph.png)
+
+Basically, lower on the graph = less server lag. The huge drop from 1 to 2 is the important part.
 
 Based on these tests, `hopper-check = 2` looks like a pretty good middle ground. It keeps hopper behavior much closer to vanilla while still cutting a large amount of the hopper-related lag compared with a setting of 1.
 
