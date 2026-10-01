@@ -4,7 +4,7 @@ Testing how Paper's `hopper-check` setting affects server MSPT and hopper-relate
 
 ## Test Setup
 
-- Paper test server
+- Paper test server version 26.1.2
 - 10,000 loaded hoppers
 - 289 loaded chunks
 - 1 player
