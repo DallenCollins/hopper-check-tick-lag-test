@@ -82,3 +82,12 @@ Raw Spark profiler files from the individual test runs are included in the repos
 ## Raw Profiles
 
 Raw Spark profiler files for each benchmark run are available in the [`spark-profiles`](spark-profiles/) folder.
+
+## Viewing the Spark Profiles
+
+The raw `.sparkprofile` files are meant to be opened with the Spark web viewer.
+
+Download one of the `.sparkprofile` files from the `spark-profiles` folder, then upload it to the Spark profiler viewer to see the full interactive report.
+
+Spark profiler viewer:
+https://spark.lucko.me/
