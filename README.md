@@ -6,6 +6,12 @@ The server I normally play on uses `hopper-check = 8` to reduce lag. The downsid
 
 So I made a controlled creative test server and tested it myself.
 
+## TL;DR
+
+In this test, changing `hopper-check` from 1 to 2 cut average median MSPT by about 55%.
+
+Going higher than 2 gave much smaller additional improvements, so HC2 looked like a good balance between performance and keeping hopper behavior closer to vanilla.
+
 ## Simple Explanation
 
 Basically, I measured how laggy the server was by itself, then filled the loaded area with 10,000 unlocked hoppers and measured it again.
