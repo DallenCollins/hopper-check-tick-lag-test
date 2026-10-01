@@ -23,6 +23,10 @@ Testing how Paper's `hopper-check` setting affects server MSPT and hopper-relate
 | 8 | 2.7903 | 60.02% |
 | 16 | 2.4507 | 64.88% |
 
+## Benchmark Graph
+
+![Hopper Check vs MSPT](hopper-check-vs-mspt.png)
+
 **Empty-server baseline:** 0.435 MSPT
 
 ## Main Finding
