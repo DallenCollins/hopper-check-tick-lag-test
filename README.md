@@ -167,3 +167,20 @@ Download one of the `.sparkprofile` files from the `spark-profiles` folder and u
 https://spark.lucko.me/
 
 That will open the full interactive Spark profiler report.
+
+## Super dumbed-down version for people who don't play Minecraft
+
+Imagine you're a little kid who really loves ice cream, and you want to eat it all the time. But your mom has a rule: you can only have ice cream once every eight days because she thinks eating it more often would be too unhealthy.
+
+Instead of just accepting that eight days is the right number, you decide to actually test it. You compare what happens if you eat ice cream every 8 days, 6 days, 4 days, 2 days, and so on, and measure the health effects of each one.
+
+Then you graph the results to look for the **sweet spot**: the point where you can have ice cream much more often without your health getting significantly worse.
+
+Maybe eating ice cream every 2 days turns out to be almost as healthy as eating it every 8 days. If that's the case, then the 8-day rule may be much more restrictive than it actually needs to be.
+
+Now translate that back to Minecraft:
+
+- Instead of days, we're talking about **1/20ths of a second**, also called game ticks.
+- Instead of ice cream, it's a **hopper**.
+- Instead of eating the ice cream, the hopper is **checking inventories to see if there are items it can pull**.
+- Instead of my mom making the rule, it's **the person who owns the server
