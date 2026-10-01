@@ -6,6 +6,8 @@ Basically, I hosted a creative Minecraft server and tested how much lag 10,000 u
 
 I first measured the server with no hoppers as a baseline. Then I loaded 10,000 hoppers and tested different `hopper-check` settings: 1, 2, 4, 8, and 16.
 
+Lag is measured here in MSPT which stands for millisecond per tick. A tick is basically one update of the Minecraft game. Minecraft normally runs at 20 ticks a second. So one tick is about 0.05 seconds. If the game has a lot of things to load then each tick takes longer. When a servers MSPT reaches about 50 then the game starts to lag. 
+
 `hopper-check` controls how often hoppers check for items. A setting of 1 means they check every tick, while a setting of 8 means they only check every 8 ticks.
 
 The server I normally play on uses `hopper-check = 8` to reduce lag. The downside is that a setting that high can interfere with multi-item sorters and other more complicated redstone machines that depend on hoppers checking frequently.
