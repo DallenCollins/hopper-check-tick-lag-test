@@ -117,7 +117,7 @@ Higher values reduce how frequently the server checks hoppers, which can reduce 
 
 The goal was not just to find the setting with the lowest MSPT possible.
 
-The goal was to find a setting that improves performance without unnecessarily sacrificing hopper and redstone behavior.
+The goal of this test was to find the lowest `hopper-check` value that still provided a meaningful performance improvement while preserving as much normal hopper behavior as possible.
 
 ## Notes and Limitations
 
