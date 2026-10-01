@@ -44,6 +44,8 @@ Higher values reduce how often the server has to perform hopper checks, which ca
 
 The point of the test was to find a good balance between server performance and normal hopper/redstone behavior.
 
+If you still don't get it, or you don't play minecraft there is a more simplified version at the bottom of the README
+
 ## What I Found
 
 The biggest improvement happened when changing `hopper-check` from 1 to 2.
