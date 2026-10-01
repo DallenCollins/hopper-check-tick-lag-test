@@ -20,14 +20,21 @@ After that, I changed `hopper-check` to:
 
 and tested each setting.
 
+`hopper-check` is a setting in the server's `spigot.yml` config that controls how often hoppers look for items they can pick up.
+
+This includes checking for item entities sitting on top of the hopper and checking inventories of containers connected to it.
+
 A tick is basically one update of the Minecraft server. Minecraft normally runs at 20 ticks per second.
 
-So:
+A lower `hopper-check` number means the hopper checks more often.
 
-- `hopper-check = 1` means hoppers check every tick
+For example:
+
+- `hopper-check = 1` means the hopper checks every tick
 - `hopper-check = 2` means every 2 ticks
 - `hopper-check = 8` means every 8 ticks
 
+Higher values make the server perform those hopper checks less often, which can reduce server load.
 The idea was to find a balance between less lag and keeping hopper behavior closer to vanilla.
 
 ## What I Found
