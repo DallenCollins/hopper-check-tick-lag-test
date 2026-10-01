@@ -52,6 +52,12 @@ hopper_test <- data.frame(
   stringsAsFactors = FALSE
 )
 
+# Save cleaned raw data
+write.csv(
+  hopper_test,
+  "hopper_test.csv",
+  row.names = FALSE
+)
 
 # -----------------------------
 # Hopper-only analysis
@@ -77,10 +83,10 @@ avg_data$marginal_improvement <-
 
 print(avg_data)
 
-
 # -----------------------------
 # Plot
 # -----------------------------
+
 
 plot(
   avg_data$hopper_check,
@@ -104,56 +110,11 @@ axis(
   labels = c("1", "2", "4", "8", "16")
 )
 
-# Empty-server baseline
 abline(
   h = 0.435,
   lty = 2,
   lwd = 1.5
 )
-
-# MSPT value labels
-text(
-  avg_data$hopper_check,
-  avg_data$mspt,
-  labels = round(avg_data$mspt, 2),
-  pos = 3,
-  cex = 0.9
-)
-
-# Baseline label
-text(
-  8,
-  0.435,
-  "Empty-server baseline = 0.435 MSPT",
-  pos = 3,
-  cex = 0.85
-)
-
-windows()
-
-plot(
-  avg_data$hopper_check,
-  avg_data$mspt,
-  type = "b",
-  log = "x",
-  pch = 19,
-  lwd = 2,
-  cex = 1.3,
-  xaxt = "n",
-  xlim = c(0.8, 18),
-  ylim = c(0, 8),
-  xlab = "Hopper Check Setting",
-  ylab = "Average Median MSPT",
-  main = "Impact of Hopper-Check Setting on MSPT with 10,000 Hoppers"
-)
-
-axis(
-  1,
-  at = c(1, 2, 4, 8, 16),
-  labels = c("1", "2", "4", "8", "16")
-)
-
-abline(h = 0.435, lty = 2, lwd = 1.5)
 
 text(
   avg_data$hopper_check,
