@@ -41,9 +41,13 @@ This suggests strong diminishing returns after approximately HC2-HC4.
 
 ## Notes
 
-The test used two runs per setting, so the data should be treated as a small benchmark rather than a definitive performance study.
+The test used two runs per setting, so the data should be treated as a small controlled benchmark rather than a definitive performance study.
 
-HC1 also showed more run-to-run variation than the higher hopper-check settings.
+HC1 showed substantially more run-to-run variation than the higher hopper-check settings.
+
+Because the benchmark was performed on a controlled test server, the exact MSPT improvement on a production server will depend on factors such as loaded chunks, hopper count, entities, plugins, and other tick activity.
+
+Raw Spark profiler files from the individual test runs are included in the repository for reference.
 
 ## Raw Profiles
 
