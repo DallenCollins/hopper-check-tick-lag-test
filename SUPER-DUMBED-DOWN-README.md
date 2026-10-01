@@ -23,6 +23,10 @@ The biggest performance improvement happened between `hopper-check = 1` and `hop
 
 Basically, lower on the graph = less server lag. The huge drop from 1 to 2 is the important part.
 
+These tests were performed on a creative test server. So almost all lag was coming from the hoppers. In a normal SMP server the fraction of lag due to hoppers will be dramatically different. 
+
 Based on these tests, `hopper-check = 2` looks like a pretty good middle ground. It keeps hopper behavior much closer to vanilla while still cutting a large amount of the hopper-related lag compared with a setting of 1.
 
 Basically: setting it to 8 helps performance, but my testing suggests you may not need to go that high to get most of the benefit.
+
+Why this matters: Lower hopper-check values preserve more vanilla redstone behavior, while higher values reduce server load.
