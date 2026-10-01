@@ -44,3 +44,7 @@ This suggests strong diminishing returns after approximately HC2-HC4.
 The test used two runs per setting, so the data should be treated as a small benchmark rather than a definitive performance study.
 
 HC1 also showed more run-to-run variation than the higher hopper-check settings.
+
+## Raw Profiles
+
+Raw Spark profiler files for each benchmark run are available in the [`spark-profiles`](spark-profiles/) folder.
