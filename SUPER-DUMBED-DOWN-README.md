@@ -16,6 +16,10 @@ So the whole point of this test was to see if we could lower the setting and get
 
 The biggest performance improvement happened between `hopper-check = 1` and `hopper-check = 2`. After that, the improvements got much smaller.
 
+## The Graph
+
+![Hopper Check vs MSPT](HopperLagGraph.png)
+
 Based on these tests, `hopper-check = 2` looks like a pretty good middle ground. It keeps hopper behavior much closer to vanilla while still cutting a large amount of the hopper-related lag compared with a setting of 1.
 
 Basically: setting it to 8 helps performance, but my testing suggests you may not need to go that high to get most of the benefit.
