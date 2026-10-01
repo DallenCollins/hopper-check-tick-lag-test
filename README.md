@@ -12,6 +12,10 @@ Basically, I hosted a creative Minecraft server, measured its normal performance
 
 A tick is basically one update of the Minecraft server. Minecraft normally runs at 20 ticks per second, so `hopper-check = 1` means a hopper checks every tick, while `hopper-check = 8` means it checks once every 8 ticks.
 
+## Want the super dumbed-down version?
+
+If you just want the simple explanation without all the technical stuff, read the [super dumbed-down README](SUPER-DUMBED-DOWN-README.md).
+
 ## What I Found
 
 The biggest improvement happened when changing `hopper-check` from 1 to 2.
