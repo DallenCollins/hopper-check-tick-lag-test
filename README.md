@@ -1,51 +1,60 @@
 # Hopper Check Tick Lag Test
 
-## Why I Tested This
+I wanted to figure out how much Paper's `hopper-check` setting actually affects server lag, and whether a lower setting could still perform well enough without messing with hopper-based redstone as much.
 
-The server I normally play on has `hopper-check` set to 8 to reduce lag.
+The server I normally play on uses `hopper-check = 8` to reduce lag. The problem is that a setting that high can interfere with multi-item sorters and other more complicated redstone machines that rely on hoppers checking for items frequently.
 
-The downside is that this can interfere with multi-item sorters and other more complicated redstone machines that rely on hoppers checking for items more often.
+So I made a controlled test server and tested it myself.
 
-So I wanted to find out whether we could lower `hopper-check` without bringing back most of the hopper lag.
+## Simple Explanation
 
-Basically, I hosted a creative Minecraft server, measured its normal performance, then loaded 10,000 unlocked hoppers and tested `hopper-check` at 1, 2, 4, 8, and 16.
+Basically, I hosted a creative Minecraft server, measured how laggy it was by itself, then filled the loaded area with 10,000 unlocked hoppers and measured it again.
 
-A tick is basically one update of the Minecraft server. Minecraft normally runs at 20 ticks per second, so `hopper-check = 1` means a hopper checks every tick, while `hopper-check = 8` means it checks once every 8 ticks.
+After that, I changed `hopper-check` to:
 
-## Want the super dumbed-down version?
+- 1
+- 2
+- 4
+- 8
+- 16
 
-If you just want the simple explanation without all the technical stuff, read the [super dumbed-down README](SUPER-DUMBED-DOWN-README.md).
+and tested each setting.
+
+A tick is basically one update of the Minecraft server. Minecraft normally runs at 20 ticks per second.
+
+So:
+
+- `hopper-check = 1` means hoppers check every tick
+- `hopper-check = 2` means every 2 ticks
+- `hopper-check = 8` means every 8 ticks
+
+The idea was to find a balance between less lag and keeping hopper behavior closer to vanilla.
 
 ## What I Found
 
 The biggest improvement happened when changing `hopper-check` from 1 to 2.
 
-Going from 1 to 2 reduced average median MSPT by about 55%.
+Going from 1 to 2 reduced average median MSPT by about **55%**.
 
-After that, the performance improvements became much smaller. HC4, HC8, and HC16 all ended up in roughly the same range.
+After that, the improvements got much smaller. Settings 4, 8, and 16 all ended up in roughly the same performance range.
 
-My takeaway is that `hopper-check = 2` looks like a good compromise for this kind of setup. It keeps hopper behavior much closer to vanilla while still getting most of the performance improvement.
+Based on this test, `hopper-check = 2` looks like a pretty good middle ground.
 
-Basically: setting it to 8 does reduce lag, but these tests suggest you may not need to go that high.
+It keeps hopper behavior much closer to vanilla while still getting most of the performance improvement.
+
+Basically: setting it to 8 does help performance, but these tests suggest you may not need to go that high.
+
+## Benchmark Graph
 
 ![Hopper Check vs MSPT](HopperLagGraph.png)
 
-Testing how Paper's `hopper-check` setting affects server MSPT and hopper-related tick lag using 10,000 loaded hoppers.
+Lower MSPT is better.
 
-## Test Setup
-
-- Paper test server version 26.1.2
-- 10,000 loaded hoppers
-- 289 loaded chunks
-- 1 player
-- `hopper-transfer = 8`
-- Each test ran for about 60 seconds
-- MSPT measured with Spark
-- Two runs were performed for each hopper-check setting
+MSPT means **milliseconds per tick**, which is basically how long the server takes to process one game tick.
 
 ## Results
 
-| Hopper Check | Average Median MSPT | Reduction vs HC1 |
+| Hopper Check | Average Median MSPT | MSPT Reduction vs HC1 |
 |---|---:|---:|
 | 1 | 6.9785 | 0% |
 | 2 | 3.1158 | 55.35% |
@@ -53,41 +62,62 @@ Testing how Paper's `hopper-check` setting affects server MSPT and hopper-relate
 | 8 | 2.7903 | 60.02% |
 | 16 | 2.4507 | 64.88% |
 
-## Benchmark Graph
-
-![Hopper Check vs MSPT](HopperLagGraph.png)
-
 **Empty-server baseline:** 0.435 MSPT
 
-## Main Finding
+## Test Setup
 
-The largest improvement occurred when `hopper-check` was increased from 1 to 2.
+- Paper test server
+- 10,000 loaded, unlocked hoppers
+- 289 loaded chunks
+- 1 player
+- `hopper-transfer = 8`
+- Each test ran for about 60 seconds
+- MSPT measured with Spark
+- Two runs were performed for each `hopper-check` setting
 
-HC2 reduced average median MSPT by about 55% compared with HC1.
+## Test Method
 
-Increasing `hopper-check` beyond 4 produced much smaller improvements, with HC4, HC8, and HC16 all testing in roughly the same performance range.
+First, I measured the server with no hoppers loaded to get a baseline.
 
-This suggests strong diminishing returns after approximately HC2-HC4.
+Then I loaded 10,000 hoppers and ran Spark profiler tests at each `hopper-check` setting.
 
-## Notes
+Each test ran for about 60 seconds.
 
-The test used two runs per setting, so the data should be treated as a small controlled benchmark rather than a definitive performance study.
+Two runs were performed for each setting, and the median MSPT from the two runs was averaged for comparison.
 
-HC1 showed substantially more run-to-run variation than the higher hopper-check settings.
+The tested settings were:
 
-Because the benchmark was performed on a controlled test server, the exact MSPT improvement on a production server will depend on factors such as loaded chunks, hopper count, entities, plugins, and other tick activity.
+`1, 2, 4, 8, 16`
 
-Raw Spark profiler files from the individual test runs are included in the repository for reference.
+## Notes and Limitations
 
-## Raw Profiles
+This was a small controlled benchmark, not a full production-server performance study.
 
-Raw Spark profiler files for each benchmark run are available in the [`spark-profiles`](spark-profiles/) folder.
+Only two runs were performed for each setting, and HC1 showed more variation between runs than the higher settings.
+
+The exact improvement on a live server will depend on things like hopper count, loaded chunks, entities, plugins, redstone activity, and other server load.
+
+Because of that, the main takeaway is not that HC2 is always better than HC8 in every situation.
+
+The takeaway is that, in this test, most of the performance improvement happened immediately between HC1 and HC2, while increasing the setting further produced much smaller gains.
+
+## Raw Data and Analysis
+
+The repository includes:
+
+- `hopper_test.csv` — recorded benchmark data
+- `Hopper_Lag_test.R` — R analysis and graphing code
+- `spark-profiles/` — raw Spark profiler files
+- `HopperLagGraph.png` — benchmark graph
+
+All raw Spark profiles, the CSV data, and the R analysis used to generate these results are included so the test can be checked or reproduced.
 
 ## Viewing the Spark Profiles
 
-The raw `.sparkprofile` files are meant to be opened with the Spark web viewer.
+The `.sparkprofile` files are meant to be viewed with the Spark web viewer.
 
-Download one of the `.sparkprofile` files from the `spark-profiles` folder, then upload it to the Spark profiler viewer to see the full interactive report.
+Download a profile from the `spark-profiles` folder and upload it here:
 
-Spark profiler viewer:
 https://spark.lucko.me/
+
+That will open the full interactive Spark profiler report.
